@@ -5,45 +5,45 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class ContactoRepository : IRepositorioContactos
+    public class RepositorioContactos : IRepositorioContactos
     {
-        private readonly GestorContactosDbContext _context;
+        private readonly GestorContactosDbContext _contexto;
 
-        public ContactoRepository(GestorContactosDbContext context)
+        public RepositorioContactos(GestorContactosDbContext contexto)
         {
-            _context = context;
+            _contexto = contexto;
         }
 
         public async Task<IEnumerable<Contacto>> ObtenerTodosAsync()
         {
-            return await _context.Contactos.Include(c => c.Direccion).ToListAsync();
+            return await _contexto.Contactos.Include(c => c.Direccion).ToListAsync();
         }
 
         public async Task<Contacto?> ObtenerPorIdAsync(int id)
         {
-            return await _context.Contactos.Include(c => c.Direccion)
-                                           .FirstOrDefaultAsync(c => c.Id == id);
+            return await _contexto.Contactos.Include(c => c.Direccion)
+                                            .FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task AgregarAsync(Contacto contacto)
         {
-            _context.Contactos.Add(contacto);
-            await _context.SaveChangesAsync();
+            _contexto.Contactos.Add(contacto);
+            await _contexto.SaveChangesAsync();
         }
 
         public async Task ActualizarAsync(Contacto contacto)
         {
-            _context.Contactos.Update(contacto);
-            await _context.SaveChangesAsync();
+            _contexto.Contactos.Update(contacto);
+            await _contexto.SaveChangesAsync();
         }
 
         public async Task EliminarAsync(int id)
         {
-            var contacto = await _context.Contactos.FindAsync(id);
+            var contacto = await _contexto.Contactos.FindAsync(id);
             if (contacto != null)
             {
-                _context.Contactos.Remove(contacto);
-                await _context.SaveChangesAsync();
+                _contexto.Contactos.Remove(contacto);
+                await _contexto.SaveChangesAsync();
             }
         }
     }

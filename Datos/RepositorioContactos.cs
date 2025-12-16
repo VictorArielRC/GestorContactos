@@ -33,7 +33,7 @@ namespace Datos
 
         public async Task ActualizarAsync(Contacto contacto)
         {
-            _contexto.Contactos.Update(contacto);
+            _contexto.Contactos.Update(contacto );
             await _contexto.SaveChangesAsync();
         }
 

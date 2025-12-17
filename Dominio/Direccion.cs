@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dominio
+﻿namespace Dominio
 {
     public class Direccion
     {
@@ -12,5 +6,7 @@ namespace Dominio
         public string Calle { get; set; } = string.Empty;
         public string Ciudad { get; set; } = string.Empty;
         public string Region { get; set; } = string.Empty;
+
+        public int ContactoId { get; set; } // FK explícita
     }
 }

@@ -6,7 +6,7 @@
         Background="{StaticResource Brush.Background}">
 
     <Grid>
-        <!-- Header -->
+        <!-- Encabezado -->
         <Grid Background="{StaticResource Brush.Primary}" Height="72" VerticalAlignment="Top">
             <TextBlock Text="Gestor de Contactos"
                  Foreground="{StaticResource Brush.PrimaryText}"
@@ -35,7 +35,7 @@
                     <Button Content="Buscar" Style="{StaticResource ButtonPrimary}" Click="Buscar_Click"/>
                 </StackPanel>
 
-                <!-- DataGrid -->
+                <!-- Tabla de datos -->
                 <DataGrid Grid.Row="2" x:Name="GridContactos"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"

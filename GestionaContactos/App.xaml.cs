@@ -24,7 +24,7 @@ namespace GestionaContactos
 
             DispatcherUnhandledException += App_DispatcherUnhandledException;
 
-            // Diagnostic: log embedded resources and check common XAML/BAML names
+            // Diagnóstico: registra recursos embebidos y verifica nombres comunes XAML/BAML
             LogResourceDiagnostics();
 
             var options = new DbContextOptionsBuilder<GestorContactosDbContext>()
@@ -44,8 +44,8 @@ namespace GestionaContactos
             }
             catch (Exception ex)
             {
-                WriteExceptionDiagnostics(ex, "Creating or showing MainWindow");
-                MessageBox.Show($"Error launching MainWindow. Diagnostics written to:\n{_logPath}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                WriteExceptionDiagnostics(ex, "Creando o mostrando MainWindow");
+                MessageBox.Show($"Error al iniciar MainWindow. Diagnóstico escrito en:\n{_logPath}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 throw;
             }
         }
@@ -54,8 +54,8 @@ namespace GestionaContactos
         {
             try
             {
-                WriteExceptionDiagnostics(e.Exception, "Unhandled UI exception");
-                MessageBox.Show($"Unhandled exception. Diagnostics written to:\n{_logPath}", "Unhandled Exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                WriteExceptionDiagnostics(e.Exception, "Excepción de UI no controlada");
+                MessageBox.Show($"Excepción no controlada. Diagnóstico escrito en:\n{_logPath}", "Excepción no controlada", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch { }
         }
@@ -67,24 +67,24 @@ namespace GestionaContactos
                 var sb = new StringBuilder();
                 var asm = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
 
-                // Basic header info
-                sb.AppendLine($"Timestamp: {DateTime.UtcNow:O}");
-                sb.AppendLine($"Assembly: {asm.FullName}");
+                // Cabecera básica
+                sb.AppendLine($"Marca temporal: {DateTime.UtcNow:O}");
+                sb.AppendLine($"Ensamblado: {asm.FullName}");
 
-                // List manifest resource names
+                // Lista nombres de recursos del manifiesto
                 var names = asm.GetManifestResourceNames();
-                sb.AppendLine("ManifestResourceNames:");
+                sb.AppendLine("NombresRecursosManifiesto:");
                 foreach (var n in names)
                     sb.AppendLine("  " + n);
 
-                // Candidates to check -- include common XAML/BAML variants
+                // Candidatos a comprobar: variantes comunes XAML/BAML
                 string[] xamls = new[] { "MainWindow.xaml", "App.xaml", "Themes/Executive.xaml", "views/mainwindow.xaml", "Views/MainWindow.xaml" };
 
                 bool anyFound = false;
 
                 foreach (var x in xamls)
                 {
-                    sb.AppendLine($"Checking '{x}':");
+                    sb.AppendLine($"Comprobando '{x}':");
                     string baml = Path.ChangeExtension(x, ".baml");
 
                     foreach (var candidate in GetCandidates(asm, x, baml).Distinct())
@@ -99,74 +99,74 @@ namespace GestionaContactos
                         }
                         catch (Exception ex)
                         {
-                            sb.AppendLine($"  Candidate '{candidate}' => Exception when probing: {ex.Message}");
+                            sb.AppendLine($"  Candidato '{candidate}' => Excepción al probar: {ex.Message}");
                         }
 
                         if (found) anyFound = true;
-                        sb.AppendLine($"  Candidate '{candidate}' => {(found ? "FOUND" : "MISSING")}");
+                        sb.AppendLine($"  Candidato '{candidate}' => {(found ? "ENCONTRADO" : "FALTANTE")}");
                     }
                 }
 
-                // Additional WPF-specific checks using pack URIs and resource APIs
+                // Comprobaciones WPF adicionales usando pack URIs y APIs de recursos
                 try
                 {
                     string asmName = asm.GetName().Name;
                     string packTheme = $"pack://application:,,,/{asmName};component/Themes/Executive.xaml";
-                    sb.AppendLine($"Trying pack URI theme: {packTheme}");
+                    sb.AppendLine($"Probando pack URI tema: {packTheme}");
                     try
                     {
                         var rd = new ResourceDictionary();
                         rd.Source = new Uri(packTheme, UriKind.Absolute);
-                        sb.AppendLine("  Pack URI theme loaded successfully");
+                        sb.AppendLine("  Tema cargado correctamente via pack URI");
                         anyFound = true;
                     }
                     catch (Exception ex)
                     {
-                        sb.AppendLine($"  Pack URI theme failed: {ex.Message}");
+                        sb.AppendLine($"  Falló carga pack URI: {ex.Message}");
                     }
 
-                    // Try to get MainWindow via Application resource stream
+                    // Intentar obtener MainWindow mediante Application.GetResourceStream
                     string mainWindowPack = $"/{asmName};component/Views/MainWindow.xaml";
-                    sb.AppendLine($"Trying application resource stream: {mainWindowPack}");
+                    sb.AppendLine($"Probando stream de recurso de aplicación: {mainWindowPack}");
                     try
                     {
                         var sri = Application.GetResourceStream(new Uri(mainWindowPack, UriKind.Relative));
                         if (sri?.Stream != null)
                         {
-                            sb.AppendLine("  MainWindow resource stream found");
+                            sb.AppendLine("  Stream de MainWindow encontrado");
                             anyFound = true;
                         }
                         else
                         {
-                            sb.AppendLine("  MainWindow resource stream missing");
+                            sb.AppendLine("  Stream de MainWindow ausente");
                         }
                     }
                     catch (Exception ex)
                     {
-                        sb.AppendLine($"  MainWindow resource probe failed: {ex.Message}");
+                        sb.AppendLine($"  Prueba de recurso MainWindow falló: {ex.Message}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    sb.AppendLine($"WPF-specific checks failed: {ex.Message}");
+                    sb.AppendLine($"Comprobaciones WPF fallaron: {ex.Message}");
                 }
 
                 File.WriteAllText(_logPath, sb.ToString());
                 Debug.WriteLine(sb.ToString());
 
-                // Only show a popup when no resources were found
+                // Mostrar popup solo cuando no se encuentra ningún recurso
                 if (!anyFound)
                 {
-                    MessageBox.Show($"Resource diagnostics written to:\n{_logPath}", "Diagnostics - Resources missing", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show($"Diagnóstico de recursos escrito en:\n{_logPath}", "Diagnóstico - Recursos faltantes", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Resource diagnostics failed: " + ex);
-                try { File.WriteAllText(_logPath, "Resource diagnostics failed: " + ex); } catch { }
+                Debug.WriteLine("Diagnóstico de recursos falló: " + ex);
+                try { File.WriteAllText(_logPath, "Diagnóstico de recursos falló: " + ex); } catch { }
             }
 
-            // Local helper: build candidate names
+            // Helper local: generar nombres candidatos
             static IEnumerable<string> GetCandidates(Assembly asm, string xaml, string baml)
             {
                 yield return xaml;
@@ -188,15 +188,15 @@ namespace GestionaContactos
             try
             {
                 var sb = new StringBuilder();
-                sb.AppendLine($"Timestamp: {DateTime.UtcNow:O}");
-                sb.AppendLine($"Context: {context}");
+                sb.AppendLine($"Marca temporal: {DateTime.UtcNow:O}");
+                sb.AppendLine($"Contexto: {context}");
                 sb.AppendLine(ex.ToString());
 
-                // Append previous diagnostics if present
+                // Adjuntar diagnóstico previo si existe
                 if (File.Exists(_logPath))
                 {
                     sb.AppendLine();
-                    sb.AppendLine("--- Previous diagnostics ---");
+                    sb.AppendLine("--- Diagnósticos previos ---");
                     sb.AppendLine(File.ReadAllText(_logPath));
                 }
 

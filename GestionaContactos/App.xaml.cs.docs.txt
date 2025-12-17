@@ -1,122 +1,107 @@
-1: Importa tipos de WPF básicos.
-2: Importa el espacio de datos.
-3: Importa EF Core para base.
-4: Importa servicios de la aplicación.
-5: Importa vistas del proyecto.
-6: Importa reflexión para ensamblados.
-7: Importa trazas y depuración.
-8: Importa manipulador de texto.
-9: Importa acceso a sistema archivos.
-10: Importa colecciones genéricas del sistema.
-11: Importa operadores LINQ para consultas.
-12: Importa tipos base del sistema.
-13: Importa dispatcher para excepciones UI.
-14: Declara el espacio de nombres principal.
-15: Abre el bloque del espacio nombres.
-16: Define clase App heredando Application.
-17: Abre el bloque de la clase.
-18: Define ruta de log temporal.
-19: Sobrescribe inicio de la aplicación.
-20: Abre el método OnStartup.
-21: Llama al inicio base.
-22: Registra manejador de excepciones UI.
-23: Comentario: inicia diagnóstico de recursos.
-24: Ejecuta el diagnóstico de recursos.
-25: Crea opciones para DbContext.
-26: Configura cadena de conexión SQL.
-27: Obtiene objeto de opciones.
-28: Crea contexto de base datos.
-29: Asegura creación de base datos.
-30: Crea repositorio de contactos.
-31: Crea servicio de contactos.
-32: Inicia bloque try de seguridad.
-33: Abre el bloque try.
-34: Instancia ventana principal con servicio.
-35: Muestra la ventana principal.
-36: Cierra el bloque try.
-37: Captura excepción general del try.
-38: Abre el bloque catch.
-39: Escribe diagnóstico de la excepción.
-40: Muestra mensaje de error al usuario.
-41: Vuelve a lanzar la excepción.
-42: Cierra el bloque catch.
-43: Cierra el método OnStartup.
-44: Manejador excepciones UI no controladas.
-45: Abre el método manejador.
-46: Inicia try del manejador.
-47: Abre el bloque try.
-48: Guarda diagnóstico de excepción no controlada.
-49: Informa usuario sobre error inesperado.
-50: Cierra el bloque try.
-51: Ignora errores durante manejo.
-52: Cierra el método manejador.
-53: Método que registra recursos embebidos.
-54: Abre método LogResourceDiagnostics.
-55: Inicia bloque try diagnóstico.
-56: Abre bloque try.
-57: Crea StringBuilder para registro.
-58: Obtiene ensamblado de entrada actual.
-59: Añade marca de tiempo UTC.
-60: Añade nombre completo del ensamblado.
-61: Obtiene nombres de recursos embebidos.
-62: Añade encabezado de recursos.
-63: Itera cada nombre de recurso.
-64: Añade cada nombre al registro.
-65: Define candidatos de XAML para buscar.
-66: Itera por cada candidato XAML.
-67: Abre bucle por candidato.
-68: Registra candidato que se verifica.
-69: Calcula nombre BAML equivalente.
-70: Crea lista de nombres candidatos.
-71: Abre inicializador de lista.
-72: Incluye nombre original XAML.
-73: Incluye nombre con puntos.
-74: Incluye nombre en minúsculas.
-75: Incluye minúsculas con puntos.
-76: Incluye solo el nombre de archivo.
-77: Incluye nombre BAML calculado.
-78: Incluye BAML con puntos.
-79: Incluye nombre de archivo BAML.
-80: Incluye ruta temática anticipada.
-81: Incluye nombre ensamblado más BAML.
-82: Incluye nombre ensamblado más XAML.
-83: Cierra inicializador de candidatos.
-84: Itera candidatos únicos para probar.
-85: Abre bucle de prueba.
-86: Declara stream temporal nulo.
-87: Intenta abrir recurso, registra excepción.
-88: Registra si candidato fue encontrado.
-89: Cierra stream si fue abierto.
-90: Cierra bucle de candidatos.
-91: Cierra bucle de xamls.
-92: Escribe registro completo en archivo.
-93: Escribe registro en ventana Debug.
-94: Muestra mensaje indicando ruta del registro.
-95: Cierra bloque try principal.
-96: Captura excepciones del diagnóstico.
-97: Abre bloque catch.
-98: Registra fallo del diagnóstico en Debug.
-99: Intenta escribir fallo en archivo.
-100: Cierra catch.
-101: Cierra método LogResourceDiagnostics.
-102: Método para guardar info de excepción.
-103: Abre método WriteExceptionDiagnostics.
-104: Inicia try para escritura.
-105: Abre bloque try.
-106: Crea StringBuilder para excepción.
-107: Añade marca temporal UTC.
-108: Añade contexto de la excepción.
-109: Añade detalles completos de excepción.
-110: Comprueba si hay registro previo.
-111: Abre bloque if.
-112: Agrega línea en blanco al registro.
-113: Añade separador de diagnósticos previos.
-114: Adjunta contenido del registro anterior.
-115: Cierra bloque if.
-116: Escribe diagnóstico final en archivo.
-117: Muestra diagnóstico en Debug.
-118: Cierra try del método.
-119: Ignora errores al escribir diagnóstico.
-120: Cierra método WriteExceptionDiagnostics.
-121: Cierra clase App.
-122: Cierra espacio de nombres.
+Importa tipos básicos de WPF.
+Importa capa de acceso a datos.
+Importa EF Core para BD.
+Importa servicios de negocio.
+Importa vistas de la aplicación.
+Importa reflexión para ensamblados.
+Importa trazas y depuración.
+Importa StringBuilder y utilidades.
+Importa entrada/salida del sistema.
+Importa colecciones genéricas del sistema.
+Importa LINQ y utilidades.
+Importa tipos base del sistema.
+Importa dispatcher para excepciones UI.
+Declara el espacio de nombres principal.
+Abre el bloque del espacio nombres.
+Define clase partial App.
+Abre el bloque de la clase.
+Define ruta de archivo de log.
+Sobrescribe método OnStartup.
+Abre el método OnStartup.
+Llama al inicio base del framework.
+Registra manejador de excepciones UI.
+Llama al diagnóstico de recursos.
+Construye opciones para DbContext.
+Configura cadena de conexión SQL.
+Obtiene objeto de opciones creado.
+Instancia contexto de base datos.
+Asegura creación de la base.
+Crea repositorio para contactos.
+Crea servicio usando repositorio.
+Inicia creación de la ventana.
+Abre bloque try para mostrar ventana.
+Instancia ventana principal con servicio.
+Muestra la ventana en pantalla.
+Cierra bloque try principal.
+Captura excepciones al crear ventana.
+Escribe diagnóstico de la excepción.
+Muestra mensaje de error al usuario.
+Vuelve a lanzar la excepción capturada.
+Cierra el método OnStartup.
+Manejador para excepciones no controladas.
+Abre el manejador de excepciones.
+Intenta escribir diagnóstico del error.
+Muestra aviso de excepción no controlada.
+Ignora errores del propio manejador.
+Cierra el manejador de excepciones.
+Método que registra recursos embebidos.
+Abre método LogResourceDiagnostics.
+Inicia bloque try del diagnóstico.
+Crea StringBuilder para el registro.
+Obtiene ensamblado de entrada actual.
+Añade marca temporal al registro.
+Añade nombre completo del ensamblado.
+Lista nombres de recursos embebidos.
+Añade encabezado de recursos al log.
+Itera cada nombre de recurso.
+Añade cada nombre al registro.
+Define candidatos XAML/BAML comunes.
+Inicializa indicador de recursos encontrados.
+Itera por cada candidato XAML.
+Añade línea con candidato verificado.
+Calcula nombre BAML equivalente.
+Itera candidatos generados únicos.
+Intenta abrir stream de recurso.
+Marca encontrado si stream existe.
+Registra excepción durante la prueba.
+Añade resultado FOUND o MISSING.
+Fin de la iteración de candidatos.
+Realiza comprobaciones WPF adicionales.
+Construye pack URI para el tema.
+Intenta cargar ResourceDictionary vía pack.
+Marca encontrado si carga con éxito.
+Intenta obtener stream de MainWindow.
+Registra resultado del probe MainWindow.
+Captura fallos en comprobaciones WPF.
+Escribe contenido completo en archivo.
+Escribe registro también en Debug.
+Muestra popup solo si ningún recurso encontrado.
+Captura excepciones del diagnóstico general.
+Intenta escribir fallo del diagnóstico.
+Cierra el método LogResourceDiagnostics.
+Helper local que genera candidatos.
+Devuelve nombre XAML original.
+Devuelve nombre con puntos.
+Devuelve versión en minúsculas.
+Devuelve minúsculas con puntos.
+Devuelve solo nombre de archivo XAML.
+Devuelve nombre BAML calculado.
+Devuelve BAML con puntos.
+Devuelve nombre archivo BAML.
+Devuelve prefijo Themes con BAML.
+Devuelve ensamblado.nombre + BAML.
+Devuelve ensamblado.nombre + XAML.
+Cierra helper local GetCandidates.
+Método para guardar excepción detallada.
+Abre método WriteExceptionDiagnostics.
+Crea StringBuilder para excepción.
+Añade marca temporal al reporte.
+Añade contexto de la excepción.
+Añade detalles completos de la excepción.
+Si existe log previo, lo adjunta.
+Escribe diagnóstico final en archivo.
+Escribe diagnóstico también en Debug.
+Ignora errores al escribir el diagnóstico.
+Cierra el método WriteExceptionDiagnostics.
+Cierra la clase App.
+Cierra el espacio de nombres.

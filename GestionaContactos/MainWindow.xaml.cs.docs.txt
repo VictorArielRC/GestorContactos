@@ -1,0 +1,89 @@
+1: Importa tipos básicos del framework WPF.
+2: Importa colecciones genéricas necesarias.
+3: Importa tipos de UI de WPF.
+4: Importa entidades del dominio.
+5: Importa servicios de la aplicación.
+6: Importa acceso a datos locales.
+7: Declara espacio de nombres de vistas.
+8: Abre bloque del espacio de nombres.
+9: Define clase parcial MainWindow.
+10: Abre bloque de la clase.
+11: Declara campo readonly de servicio.
+12: Comentario sobre constructor sin parámetros.
+13: Define constructor sin parámetros público.
+14: Llama al constructor principal con dependencias.
+15: Abre inicialización de servicio temporal.
+16: Crea nuevo servicio de contactos.
+17: Abre creación de repositorio.
+18: Crea repositorio con DbContext fábrica.
+19: Cierra creación de DbContext.
+20: Cierra creación del repositorio.
+21: Cierra creación del servicio.
+22: Cierra llamada al constructor principal.
+23: Abre cuerpo del constructor sin parámetros.
+24: Comentario que InitializeComponent está en otro constructor.
+25: Cierra cuerpo del constructor.
+26: Comentario sobre constructor principal.
+27: Define constructor que recibe servicio.
+28: Abre cuerpo del constructor principal.
+29: Llama InitializeComponent para cargar XAML.
+30: Asigna servicio al campo privado.
+31: Llama método para cargar contactos.
+32: Cierra cuerpo del constructor.
+33: Comentario sobre carga inicial de datos.
+34: Define método asíncrono CargarContactos.
+35: Abre método CargarContactos.
+36: Obtiene lista de contactos del servicio.
+37: Verifica que GridContactos no sea nulo.
+38: Asigna la lista como ItemsSource.
+39: Cierra bloque if.
+40: Cierra método CargarContactos.
+41: Comentario sobre búsqueda de contactos.
+42: Define manejador Buscar_Click.
+43: Abre método Buscar_Click.
+44: Lee texto del filtro nombre.
+45: Lee texto del filtro rut.
+46: Pide lista filtrada al servicio.
+47: Verifica que GridContactos no sea nulo.
+48: Asigna lista filtrada al Grid.
+49: Cierra if.
+50: Cierra método Buscar_Click.
+51: Comentario sobre crear contacto.
+52: Define manejador Crear_Click.
+53: Abre método Crear_Click.
+54: Crea nueva instancia de Contacto.
+55: Asigna RUT de ejemplo.
+56: Asigna Nombres de ejemplo.
+57: Asigna Apellidos de ejemplo.
+58: Asigna Email de ejemplo.
+59: Asigna Telefono de ejemplo.
+60: Inicia propiedad Direccion.
+61: Abre inicializador de Direccion.
+62: Asigna Calle de ejemplo.
+63: Asigna Ciudad de ejemplo.
+64: Asigna Region de ejemplo.
+65: Cierra inicializador de Direccion.
+66: Cierra inicializador de Contacto.
+67: Cierra la creación del objeto nuevo.
+68: Llama servicio para agregar nuevo contacto.
+69: Vuelve a cargar contactos en UI.
+70: Cierra método Crear_Click.
+71: Comentario sobre actualizar contacto.
+72: Define manejador Actualizar_Click.
+73: Abre método Actualizar_Click.
+74: Comprueba selección actual en GridContactos.
+75: Si hay seleccionado, actualiza Email.
+76: Llama servicio para actualizar contacto.
+77: Refresca lista en UI.
+78: Cierra bloque if.
+79: Cierra método Actualizar_Click.
+80: Comentario sobre eliminar contacto.
+81: Define manejador Eliminar_Click.
+82: Abre método Eliminar_Click.
+83: Comprueba selección actual del Grid.
+84: Si hay seleccionado, llama eliminación lógica.
+85: Refresca lista en UI.
+86: Cierra bloque if.
+87: Cierra método Eliminar_Click.
+88: Cierra clase MainWindow.
+89: Cierra espacio nombres.

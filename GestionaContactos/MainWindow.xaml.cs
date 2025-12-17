@@ -20,30 +20,41 @@ namespace GestionaContactos.Views
             )
         )
         {
+            // Intencionalmente vacío: InitializeComponent se llama
+            // en el constructor principal que recibe el servicio
         }
 
         // Constructor principal con inyección de servicio
         public MainWindow(ServiciodeContacto servicio)
         {
-            InitializeComponent();
+            InitializeComponent(); // Obligatorio para que WPF cargue el XAML
             _servicio = servicio;
             CargarContactos();
         }
 
+        // Carga todos los contactos al iniciar
         private async void CargarContactos()
         {
             var lista = await _servicio.ObtenerTodosAsync();
-            GridContactos.ItemsSource = lista;
+            if (GridContactos != null)
+            {
+                GridContactos.ItemsSource = lista;
+            }
         }
 
+        // Filtra contactos por nombre o RUT
         private async void Buscar_Click(object sender, RoutedEventArgs e)
         {
             var nombre = FiltroNombre.Text;
             var rut = FiltroRut.Text;
             var lista = await _servicio.ObtenerFiltradosAsync(nombre, rut);
-            GridContactos.ItemsSource = lista;
+            if (GridContactos != null)
+            {
+                GridContactos.ItemsSource = lista;
+            }
         }
 
+        // Crea un nuevo contacto de ejemplo
         private async void Crear_Click(object sender, RoutedEventArgs e)
         {
             var nuevo = new Contacto
@@ -65,6 +76,7 @@ namespace GestionaContactos.Views
             CargarContactos();
         }
 
+        // Actualiza el contacto seleccionado
         private async void Actualizar_Click(object sender, RoutedEventArgs e)
         {
             if (GridContactos.SelectedItem is Contacto seleccionado)
@@ -75,6 +87,7 @@ namespace GestionaContactos.Views
             }
         }
 
+        // Elimina lógicamente el contacto seleccionado
         private async void Eliminar_Click(object sender, RoutedEventArgs e)
         {
             if (GridContactos.SelectedItem is Contacto seleccionado)

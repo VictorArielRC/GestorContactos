@@ -1,0 +1,122 @@
+1: Importa tipos de WPF básicos.
+2: Importa el espacio de datos.
+3: Importa EF Core para base.
+4: Importa servicios de la aplicación.
+5: Importa vistas del proyecto.
+6: Importa reflexión para ensamblados.
+7: Importa trazas y depuración.
+8: Importa manipulador de texto.
+9: Importa acceso a sistema archivos.
+10: Importa colecciones genéricas del sistema.
+11: Importa operadores LINQ para consultas.
+12: Importa tipos base del sistema.
+13: Importa dispatcher para excepciones UI.
+14: Declara el espacio de nombres principal.
+15: Abre el bloque del espacio nombres.
+16: Define clase App heredando Application.
+17: Abre el bloque de la clase.
+18: Define ruta de log temporal.
+19: Sobrescribe inicio de la aplicación.
+20: Abre el método OnStartup.
+21: Llama al inicio base.
+22: Registra manejador de excepciones UI.
+23: Comentario: inicia diagnóstico de recursos.
+24: Ejecuta el diagnóstico de recursos.
+25: Crea opciones para DbContext.
+26: Configura cadena de conexión SQL.
+27: Obtiene objeto de opciones.
+28: Crea contexto de base datos.
+29: Asegura creación de base datos.
+30: Crea repositorio de contactos.
+31: Crea servicio de contactos.
+32: Inicia bloque try de seguridad.
+33: Abre el bloque try.
+34: Instancia ventana principal con servicio.
+35: Muestra la ventana principal.
+36: Cierra el bloque try.
+37: Captura excepción general del try.
+38: Abre el bloque catch.
+39: Escribe diagnóstico de la excepción.
+40: Muestra mensaje de error al usuario.
+41: Vuelve a lanzar la excepción.
+42: Cierra el bloque catch.
+43: Cierra el método OnStartup.
+44: Manejador excepciones UI no controladas.
+45: Abre el método manejador.
+46: Inicia try del manejador.
+47: Abre el bloque try.
+48: Guarda diagnóstico de excepción no controlada.
+49: Informa usuario sobre error inesperado.
+50: Cierra el bloque try.
+51: Ignora errores durante manejo.
+52: Cierra el método manejador.
+53: Método que registra recursos embebidos.
+54: Abre método LogResourceDiagnostics.
+55: Inicia bloque try diagnóstico.
+56: Abre bloque try.
+57: Crea StringBuilder para registro.
+58: Obtiene ensamblado de entrada actual.
+59: Añade marca de tiempo UTC.
+60: Añade nombre completo del ensamblado.
+61: Obtiene nombres de recursos embebidos.
+62: Añade encabezado de recursos.
+63: Itera cada nombre de recurso.
+64: Añade cada nombre al registro.
+65: Define candidatos de XAML para buscar.
+66: Itera por cada candidato XAML.
+67: Abre bucle por candidato.
+68: Registra candidato que se verifica.
+69: Calcula nombre BAML equivalente.
+70: Crea lista de nombres candidatos.
+71: Abre inicializador de lista.
+72: Incluye nombre original XAML.
+73: Incluye nombre con puntos.
+74: Incluye nombre en minúsculas.
+75: Incluye minúsculas con puntos.
+76: Incluye solo el nombre de archivo.
+77: Incluye nombre BAML calculado.
+78: Incluye BAML con puntos.
+79: Incluye nombre de archivo BAML.
+80: Incluye ruta temática anticipada.
+81: Incluye nombre ensamblado más BAML.
+82: Incluye nombre ensamblado más XAML.
+83: Cierra inicializador de candidatos.
+84: Itera candidatos únicos para probar.
+85: Abre bucle de prueba.
+86: Declara stream temporal nulo.
+87: Intenta abrir recurso, registra excepción.
+88: Registra si candidato fue encontrado.
+89: Cierra stream si fue abierto.
+90: Cierra bucle de candidatos.
+91: Cierra bucle de xamls.
+92: Escribe registro completo en archivo.
+93: Escribe registro en ventana Debug.
+94: Muestra mensaje indicando ruta del registro.
+95: Cierra bloque try principal.
+96: Captura excepciones del diagnóstico.
+97: Abre bloque catch.
+98: Registra fallo del diagnóstico en Debug.
+99: Intenta escribir fallo en archivo.
+100: Cierra catch.
+101: Cierra método LogResourceDiagnostics.
+102: Método para guardar info de excepción.
+103: Abre método WriteExceptionDiagnostics.
+104: Inicia try para escritura.
+105: Abre bloque try.
+106: Crea StringBuilder para excepción.
+107: Añade marca temporal UTC.
+108: Añade contexto de la excepción.
+109: Añade detalles completos de excepción.
+110: Comprueba si hay registro previo.
+111: Abre bloque if.
+112: Agrega línea en blanco al registro.
+113: Añade separador de diagnósticos previos.
+114: Adjunta contenido del registro anterior.
+115: Cierra bloque if.
+116: Escribe diagnóstico final en archivo.
+117: Muestra diagnóstico en Debug.
+118: Cierra try del método.
+119: Ignora errores al escribir diagnóstico.
+120: Cierra método WriteExceptionDiagnostics.
+121: Cierra clase App.
+122: Cierra espacio de nombres.

@@ -66,47 +66,44 @@ namespace GestionaContactos
             {
                 var sb = new StringBuilder();
                 var asm = Assembly.GetEntryAssembly() ?? Assembly.GetExecutingAssembly();
+
+                // Basic header info
                 sb.AppendLine($"Timestamp: {DateTime.UtcNow:O}");
                 sb.AppendLine($"Assembly: {asm.FullName}");
 
+                // List manifest resource names
                 var names = asm.GetManifestResourceNames();
                 sb.AppendLine("ManifestResourceNames:");
                 foreach (var n in names)
                     sb.AppendLine("  " + n);
 
-                // Candidates to check -- include the exact failing name reported by the exception
+                // Candidates to check -- include common XAML/BAML variants
                 string[] xamls = new[] { "MainWindow.xaml", "App.xaml", "Themes/Executive.xaml", "views/mainwindow.xaml", "Views/MainWindow.xaml" };
 
-                bool anyFound = false; // track if any resource was found
+                bool anyFound = false;
 
                 foreach (var x in xamls)
                 {
                     sb.AppendLine($"Checking '{x}':");
                     string baml = Path.ChangeExtension(x, ".baml");
 
-                    var candidates = new List<string>
+                    foreach (var candidate in GetCandidates(asm, x, baml).Distinct())
                     {
-                        x,
-                        x.Replace('/', '.'),
-                        x.ToLowerInvariant(),
-                        x.ToLowerInvariant().Replace('/', '.'),
-                        Path.GetFileName(x),
-                        baml,
-                        baml.Replace('/', '.'),
-                        Path.GetFileName(baml),
-                        "Themes." + Path.GetFileName(baml),
-                        asm.GetName().Name + "." + baml.Replace('/', '.'),
-                        asm.GetName().Name + "." + x.Replace('/', '.')
-                    };
+                        bool found = false;
+                        try
+                        {
+                            using (var s = asm.GetManifestResourceStream(candidate))
+                            {
+                                found = s != null;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            sb.AppendLine($"  Candidate '{candidate}' => Exception when probing: {ex.Message}");
+                        }
 
-                    foreach (var c in candidates.Distinct())
-                    {
-                        Stream? s = null;
-                        try { s = asm.GetManifestResourceStream(c); } catch (Exception ex) { sb.AppendLine($"  Candidate '{c}' => Exception when probing: {ex.Message}"); }
-                        var found = (s != null);
                         if (found) anyFound = true;
-                        sb.AppendLine($"  Candidate '{c}' => {(found ? "FOUND" : "MISSING")} ");
-                        s?.Dispose();
+                        sb.AppendLine($"  Candidate '{candidate}' => {(found ? "FOUND" : "MISSING")}");
                     }
                 }
 
@@ -167,6 +164,22 @@ namespace GestionaContactos
             {
                 Debug.WriteLine("Resource diagnostics failed: " + ex);
                 try { File.WriteAllText(_logPath, "Resource diagnostics failed: " + ex); } catch { }
+            }
+
+            // Local helper: build candidate names
+            static IEnumerable<string> GetCandidates(Assembly asm, string xaml, string baml)
+            {
+                yield return xaml;
+                yield return xaml.Replace('/', '.');
+                yield return xaml.ToLowerInvariant();
+                yield return xaml.ToLowerInvariant().Replace('/', '.');
+                yield return Path.GetFileName(xaml);
+                yield return baml;
+                yield return baml.Replace('/', '.');
+                yield return Path.GetFileName(baml);
+                yield return "Themes." + Path.GetFileName(baml);
+                yield return asm.GetName().Name + "." + baml.Replace('/', '.');
+                yield return asm.GetName().Name + "." + xaml.Replace('/', '.');
             }
         }
 

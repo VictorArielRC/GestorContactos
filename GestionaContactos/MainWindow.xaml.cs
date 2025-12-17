@@ -20,26 +20,29 @@ namespace GestionaContactos.Views
             )
         )
         {
-            // Intencionalmente vacío: InitializeComponent se llama
-            // en el constructor principal que recibe el servicio
+            // Deja el constructor vacío, el otro inicializa componentes
         }
 
         // Constructor principal con inyección de servicio
         public MainWindow(ServiciodeContacto servicio)
         {
-            InitializeComponent(); // Obligatorio para que WPF cargue el XAML
-            _servicio = servicio;
-            CargarContactos();
+            InitializeComponent(); // Carga XAML y elementos visuales
+            _servicio = servicio ?? throw new ArgumentNullException(nameof(servicio));
+            Loaded += OnLoaded; // cargar datos cuando ventana esté lista
+        }
+
+        private async void OnLoaded(object? sender, RoutedEventArgs e)
+        {
+            Loaded -= OnLoaded;
+            await CargarContactosAsync();
         }
 
         // Carga todos los contactos al iniciar
-        private async void CargarContactos()
+        private async System.Threading.Tasks.Task CargarContactosAsync()
         {
             var lista = await _servicio.ObtenerTodosAsync();
-            if (GridContactos != null)
-            {
-                GridContactos.ItemsSource = lista;
-            }
+            GridContactos.ItemsSource = lista;
+            return;
         }
 
         // Filtra contactos por nombre o RUT
@@ -48,10 +51,7 @@ namespace GestionaContactos.Views
             var nombre = FiltroNombre.Text;
             var rut = FiltroRut.Text;
             var lista = await _servicio.ObtenerFiltradosAsync(nombre, rut);
-            if (GridContactos != null)
-            {
-                GridContactos.ItemsSource = lista;
-            }
+            GridContactos.ItemsSource = lista;
         }
 
         // Crea un nuevo contacto de ejemplo
@@ -73,7 +73,7 @@ namespace GestionaContactos.Views
             };
 
             await _servicio.AgregarAsync(nuevo);
-            CargarContactos();
+            await CargarContactosAsync();
         }
 
         // Actualiza el contacto seleccionado
@@ -83,7 +83,7 @@ namespace GestionaContactos.Views
             {
                 seleccionado.Email = "actualizado@correo.cl";
                 await _servicio.ActualizarAsync(seleccionado);
-                CargarContactos();
+                await CargarContactosAsync();
             }
         }
 
@@ -93,7 +93,7 @@ namespace GestionaContactos.Views
             if (GridContactos.SelectedItem is Contacto seleccionado)
             {
                 await _servicio.EliminarLogicoAsync(seleccionado.Id);
-                CargarContactos();
+                await CargarContactosAsync();
             }
         }
     }

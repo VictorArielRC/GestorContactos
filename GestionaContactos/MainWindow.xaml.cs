@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using Dominio;
 using Servicios;
-using System.Collections.Generic;
+using Datos;
 
 namespace GestionaContactos.Views
 {
@@ -9,6 +11,18 @@ namespace GestionaContactos.Views
     {
         private readonly ServiciodeContacto _servicio;
 
+        // Constructor sin parámetros requerido por WPF
+        public MainWindow() : this(
+            new ServiciodeContacto(
+                new RepositorioContactos(
+                    new GestorContactosDbContextFactory().CreateDbContext(Array.Empty<string>())
+                )
+            )
+        )
+        {
+        }
+
+        // Constructor principal con inyección de servicio
         public MainWindow(ServiciodeContacto servicio)
         {
             InitializeComponent();

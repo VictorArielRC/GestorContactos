@@ -32,11 +32,11 @@ Las capturas se almacenarán en la carpeta `docs/screenshots/` para mostrar el p
 ## 📌 Roadmap
 
 - [x] Estructura base de la solución  
-- [ ] Implementar entidades y repositorios  
-- [ ] Crear servicios de negocio  
-- [ ] Diseñar interfaz WPF con MVVM  
-- [ ] Integrar validación de RUT  
-- [ ] Añadir exportación de datos  
+- [x] Implementar entidades y repositorios  
+- [x] Crear servicios de negocio  
+- [x] Diseñar interfaz WPF con MVVM  
+- [x] Integrar validación de RUT  
+- [x] Añadir exportación de datos  
 
 ## 📄 Licencia
 
